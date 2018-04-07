@@ -207,16 +207,16 @@ typedef struct AVLnodo {
 	int hDer, hIzq;
 	int FE;
 	struct AVLnodo *izq, *der;
-}*AVL;
+}AVL;
 
 int numNodosAVL = 0; // nummero de nodos del arbol AVL
 
 
 //-------Creacion de un nuevo nodo para el arbol AVL------------//
 
-AVL crearNodoAVL(int x)
+AVL* crearNodoAVL(int x)
 {
-	AVL Nodo = new(struct AVLnodo);
+	AVL* Nodo = new(struct AVLnodo);
 	Nodo->nro = x;
 	Nodo->izq = NULL;
 	Nodo->der = NULL;
@@ -227,27 +227,27 @@ AVL crearNodoAVL(int x)
 	return Nodo;
 }
 
-void Hcount(AVL a);
+void Hcount(AVL** a);
 
 //-----Metodo para insertar un nuevo nodo en el arbol AVL----------//
-void insertAVL(AVL &tree, int x)
+void insertAVL(AVL** tree, int x)
 {
 	system("cls");
 	if (tree == NULL)
 	{
-		tree = crearNodoAVL(x);
+		(*tree )= crearNodoAVL(x);
 		cout << "\n\t  Dato Insertado..!" << endl << endl;
 	}
-	else if (x < tree->nro)
-		insertAVL(tree->izq, x);
-	else if (x > tree->nro)
-		insertAVL(tree->der, x);
+	else if (x < (*tree)->nro)
+		insertAVL(&(*tree)->izq, x);
+	else if (x > (*tree)->nro)
+		insertAVL(&(*tree)->der, x);
 		
 				
 		
 }
 
-void verArbolAVL(AVL tree, int n)
+void verArbolAVL(AVL* tree, int n)
 {
 	//cout<<"Representacion Arbol AVL final"<<endl<<endl;
 
@@ -269,23 +269,23 @@ void verArbolAVL(AVL tree, int n)
 
 //--------Metodos para reestructuracion del arbol---------
 
-AVL rotarLL(AVL &A){ //precond: el árbol necesita una rotacion Izquierda-Izquierda
+AVL* rotarLL(AVL** A){ //precond: el árbol necesita una rotacion Izquierda-Izquierda
 	
-	AVL newTree = NULL;
-cout<<"---------------Datos de prueba--------------"<<endl<<"----------Rotacion Izquierda-Izquierda-----------"<<endl<<"Nodo a evaluar: (A): "<<A->nro<<endl;
+	AVL* newTree = NULL;
+cout<<"---------------Datos de prueba--------------"<<endl<<"----------Rotacion Izquierda-Izquierda-----------"<<endl<<"Nodo a evaluar: (A): "<<(*A)->nro<<endl;
 	
-	AVL aux = A->izq->izq;
+	AVL* aux = (*A)->izq->izq;
 		
-	A->izq->der = A;
+	(*A)->izq->der = (*A);
 	
-	AVL aux2 = A->izq;
+	AVL* aux2 = (*A)->izq;
 
 
 	
 	
 		
 	cout<<"Auxiliar (aux = A->izq->izq): "<<aux->nro<<endl;
-	cout<<"A izq-der (A->izq->der = A): "<<A->izq->der->nro<<endl;
+	cout<<"A izq-der (A->izq->der = A): "<<(*A)->izq->der->nro<<endl;
 	cout<<"Auxiliar2 (aux2 = A->izq): "<<aux2->nro<<endl;
 	
 	
@@ -293,12 +293,12 @@ cout<<"---------------Datos de prueba--------------"<<endl<<"----------Rotacion 
 	newTree = aux2;
 	
 	
-	cout<<"A->izq = aux: "<<A->izq->nro<<endl;
+	cout<<"(*A)->izq = aux: "<<(*A)->izq->nro<<endl;
 	
 	
 
 	
-	cout<<"Nuevo Arbol(A = aux2): "<<newTree->nro<<endl<<"A->izq: "<<newTree->izq->nro<<endl<<"A->der: "<<newTree->der->nro<<endl<<endl;
+	cout<<"Nuevo Arbol((*A) = aux2): "<<newTree->nro<<endl<<"A->izq: "<<newTree->izq->nro<<endl<<"A->der: "<<newTree->der->nro<<endl<<endl;
 
 	
 	
@@ -310,90 +310,90 @@ cout<<"---------------Datos de prueba--------------"<<endl<<"----------Rotacion 
 	return newTree;
 }
 
-AVL rotarRR(AVL &A){ //precond: el árbol necesita una rotacion Derecha-Derecha
-	AVL aux = A->der->der;
-	A->der->izq = A;
-	AVL aux2 = A->der;
-	A = aux2;
+AVL* rotarRR(AVL** A){ //precond: el árbol necesita una rotacion Derecha-Derecha
+	AVL* aux = (*A)->der->der;
+	(*A)->der->izq = (*A);
+	AVL* aux2 = (*A)->der;
+	(*A) = aux2;
 	cout<<"Representacion arbol, rotacion DD"<<endl;
-	verArbolAVL(A,0);
-	return A;
+	verArbolAVL((*A),0);
+	return (*A);
 }
 
-AVL rotarLRalter(AVL &A){ //precond: el árbol necesita una rotacion LR
-	rotarRR(A->izq);
-	rotarLL(A);
+AVL* rotarLRalter(AVL** A){ //precond: el árbol necesita una rotacion LR
+	rotarRR(&(*A)->izq);
+	rotarLL(&(*A));
 	cout<<"Representacion arbol, rotacion ID"<<endl;
-	verArbolAVL(A,0);
-	return A;
+	verArbolAVL((*A),0);
+	return (*A);
 }
 
-AVL rotarRLalter(AVL &A){ //precond: el árbol necesita una rotacion RL
-	rotarLL(A->der);
-	rotarRR(A);
+AVL* rotarRLalter(AVL** A){ //precond: el árbol necesita una rotacion RL
+	rotarLL(&(*A)->der);
+	rotarRR(&(*A));
 	cout<<"Representacion arbol, rotacion DI"<<endl;
-	verArbolAVL(A,0);
-	return A;
+	verArbolAVL((*A),0);
+	return (*A);
 }
 
 
 
-void balanceFE(AVL &n){
+void balanceFE(AVL** n){
 	
-	cout<<"Balance del arbol, punto de partida, Nodo: "<<n->nro<<endl;
+	cout<<"Balance del arbol, punto de partida, Nodo: "<<(*n)->nro<<endl;
 
-	AVL arbl;
+	AVL *arbl;
 
 
-	if(n->FE==2){
-    	if(n->der->der!=NULL){
-    	cout<<"Rotar DD, Nodo: "<<n->nro<<endl;
-    		arbl = rotarRR(n);}
-    	else if(n->der->izq!=NULL){
-    	cout<<"Rotar DI, Nodo: "<<n->nro<<endl;
-    		arbl = rotarRLalter(n);}
+	if((*n)->FE==2){
+    	if((*n)->der->der!=NULL){
+    	cout<<"Rotar DD, Nodo: "<<(*n)->nro<<endl;
+    		arbl = rotarRR(&(*n));}
+    	else if((*n)->der->izq!=NULL){
+    	cout<<"Rotar DI, Nodo: "<<(*n)->nro<<endl;
+    		arbl = rotarRLalter(&(*n));}
     }
-    if(n->FE==-2){
-    	if(n->izq->izq!=NULL){
-    	cout<<"Rotar II, Nodo: "<<n->nro<<endl;
-    		arbl = rotarLL(n);}
-    	else if(n->izq->der!=NULL){
-    	cout<<"Rotar ID, Nodo: "<<n->nro<<endl;
-    		arbl = rotarLRalter(n);}
+    if((*n)->FE==-2){
+    	if((*n)->izq->izq!=NULL){
+    	cout<<"Rotar II, Nodo: "<<(*n)->nro<<endl;
+    		arbl = rotarLL(&(*n));}
+    	else if((*n)->izq->der!=NULL){
+    	cout<<"Rotar ID, Nodo: "<<(*n)->nro<<endl;
+    		arbl = rotarLRalter(&(*n));}
 	}   
 	
-	Hcount(arbl);
+	Hcount(&arbl);
 }
 
-void Hcount(AVL a){
+void Hcount(AVL** a){
 		
-	if(a->der!=NULL){
-		Hcount(a->der);
-		if(a->der->der!=NULL);
-		if(a->der->izq!=NULL);
+	if((*a)->der!=NULL){
+		Hcount(&(*a)->der);
+		if((*a)->der->der!=NULL);
+		if((*a)->der->izq!=NULL);
 		
-		a->hDer+=1;
+		(*a)->hDer+=1;
 		
 	}
-	if(a->izq!=NULL){
-		Hcount(a->izq);
-		if(a->izq->hDer==1);
-		if(a->izq->hIzq==1);
+	if((*a)->izq!=NULL){
+		Hcount(&(*a)->izq);
+		if((*a)->izq->hDer==1);
+		if((*a)->izq->hIzq==1);
 		
-		a->hIzq+=1;
+		(*a)->hIzq+=1;
 	}
 		cout<<"-------IMPRESION DE PRUEBA------"<<endl<<"-----VALORES-----"<<endl
-		<<"NODO: "<<a->nro<<endl<<"ALTURA DERECHA: "<<a->hDer<<endl<<"ALTURA IZQUIERDA: "<<a->hIzq<<endl<<endl;
+		<<"NODO: "<<(*a)->nro<<endl<<"ALTURA DERECHA: "<<(*a)->hDer<<endl<<"ALTURA IZQUIERDA: "<<(*a)->hIzq<<endl<<endl;
 		
-	a->FE= a->hDer-a->hIzq;
+	(*a)->FE= (*a)->hDer-(*a)->hIzq;
 	
 	cout<<"Factor de equilibrio del nodo: ";
-	cout<<a->nro<<"\t"<<a->	FE<<endl;
+	cout<<(*a)->nro<<"\t"<<(*a)->	FE<<endl;
 	
 	
 	
-	if(a->FE>1||a->FE<-1){
-		balanceFE(a);
+	if((*a)->FE>1||(*a)->FE<-1){
+		balanceFE(&(*a));
 	}
     
 }
@@ -451,7 +451,7 @@ void menu2()
 int main()
 {
 	ABB arbol = NULL;
-	AVL tree = NULL;
+	AVL *tree = NULL;
 	int x;
 	int op, op2;
 
@@ -527,8 +527,8 @@ int main()
 			system("cls");
 
 			cout << " Ingrese valor : ";  cin >> x;
-			insertAVL(tree, x);
-			Hcount(tree);
+			insertAVL(&(tree), x);
+			Hcount(&tree);
 			
 			break;
 
