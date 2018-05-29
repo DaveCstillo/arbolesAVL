@@ -35,5 +35,16 @@
     <ClInclude Include="ABBscreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ABBscreen.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

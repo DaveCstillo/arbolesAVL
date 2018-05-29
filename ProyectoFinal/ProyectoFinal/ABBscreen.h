@@ -1,4 +1,5 @@
 #pragma once
+#include "ABBscreen.cpp"
 
 namespace ProyectoFinal {
 
@@ -34,10 +35,12 @@ namespace ProyectoFinal {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
-	protected:
+	public: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Button^  button1;
+	public:
 
-	private:
+
+	public:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -51,6 +54,7 @@ namespace ProyectoFinal {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -62,11 +66,21 @@ namespace ProyectoFinal {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"label1";
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(157, 207);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(113, 40);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// ABBscreen
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(480, 277);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
 			this->Name = L"ABBscreen";
 			this->Text = L"ABBscreen";
@@ -77,7 +91,10 @@ namespace ProyectoFinal {
 
 	public: void setText(String^ txt) {
 			this->label1->Text = txt;
+			
 		}
+
+
 #pragma endregion
 
 

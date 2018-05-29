@@ -13,29 +13,9 @@ Luis Valenzuela                             0901-14-314
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
-
+#include "ABB.h"
 using namespace std;
 
-/*---------  Estructura del arbol ABB  -------*/
-typedef struct ABBnodo {
-	int nro;
-	struct ABBnodo *izq, *der;
-}*ABB;
-
-int numNodosABB = 0; // nummero de nodos del arbol ABB
-int sumNodos = 0;
-int numK = 0, k;     //  nodos menores que un numero k ingresado
-
-
-					 /* ---------- Estructura de la cola ---------*/
-struct nodoCola {
-	ABB ptr;
-	struct nodoCola *sgte;
-};
-struct cola {
-	struct nodoCola *delante;
-	struct nodoCola *atras;
-};
 
 void inicializaCola(struct cola &q)
 {
@@ -55,29 +35,6 @@ void encola(struct cola &q, ABB n)
 		(q.atras)->sgte = p;
 	q.atras = p;
 }
-
-ABB desencola(struct cola &q)
-{
-	struct nodoCola *p;
-	p = q.delante;
-	ABB n = p->ptr;
-	q.delante = (q.delante)->sgte;
-	delete(p);
-	return n;
-}
-
-
-//-------Creacion de un nuevo nodo para el arbol ABB------------//
-ABB crearNodo(int x)
-{
-	ABB nuevoNodo = new(struct ABBnodo);
-	nuevoNodo->nro = x;
-	nuevoNodo->izq = NULL;
-	nuevoNodo->der = NULL;
-
-	return nuevoNodo;
-}
-
 
 //------Metodo de insertar en el arbol ABB------------//
 
@@ -160,16 +117,7 @@ bool busquedaRec(ABB arbol, int dato)
 	return r;
 }
 
-ABB unirABB(ABB izq, ABB der)
-{
-	if (izq == NULL) return der;
-	if (der == NULL) return izq;
 
-	ABB centro = unirABB(izq->der, der->izq);
-	izq->der = centro;
-	der->izq = izq;
-	return der;
-}
 
 void elimina(ABB &arbol, int x)
 {
