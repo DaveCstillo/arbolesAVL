@@ -103,49 +103,49 @@ bool busquedaRec(ABB arbol, int dato)
 }
 
 
+//
+//void elimina(ABB &arbol, int x)
+//{
+//	if (arbol == NULL) return;
+//
+//	if (x<arbol->nro)
+//		elimina(arbol->izq, x);
+//	else if (x>arbol->nro)
+//		elimina(arbol->der, x);
+//
+//	else
+//	{
+//		ABB p = arbol;
+//		arbol = unirABB(arbol->izq, arbol->der);
+//		delete p;
+//	}
+//	system("PAUSE");
+//}
 
-void elimina(ABB &arbol, int x)
-{
-	if (arbol == NULL) return;
-
-	if (x<arbol->nro)
-		elimina(arbol->izq, x);
-	else if (x>arbol->nro)
-		elimina(arbol->der, x);
-
-	else
-	{
-		ABB p = arbol;
-		arbol = unirABB(arbol->izq, arbol->der);
-		delete p;
-	}
-	system("PAUSE");
-}
 
 
-
-void recorrerxNivel(ABB arbol)
-{
-	struct cola q;
-	inicializaCola(q);
-	cout << "\t";
-
-	if (arbol != NULL)
-	{
-		encola(q, arbol);
-
-		while (q.delante != NULL)
-		{
-			arbol = desencola(q);
-			cout << arbol->nro << ' ';
-
-			if (arbol->izq != NULL)
-				encola(q, arbol->izq);
-			if (arbol->der != NULL)
-				encola(q, arbol->der);
-		}
-	}
-}
+//void recorrerxNivel(ABB arbol)
+//{
+//	struct cola q;
+//	inicializaCola(q);
+//	cout << "\t";
+//
+//	if (arbol != NULL)
+//	{
+//		encola(q, arbol);
+//
+//		while (q.delante != NULL)
+//		{
+//			arbol = desencola(q);
+//			cout << arbol->nro << ' ';
+//
+//			if (arbol->izq != NULL)
+//				encola(q, arbol->izq);
+//			if (arbol->der != NULL)
+//				encola(q, arbol->der);
+//		}
+//	}
+//}
 
 
 int contarHojas(ABB arbol)
@@ -486,7 +486,7 @@ int main()
 		case 3: //ELiminar Elemento
 			system("cls");
 			cout << " Valor a eliminar: "; cin >> x;
-			elimina(arbol, x);
+			//elimina(arbol, x);
 			cout << "\n\tEliminado..!";
 			break;
 

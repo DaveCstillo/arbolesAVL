@@ -1,5 +1,5 @@
 #include <iostream>
-#include "code.cpp"
+#include "ABB.h"
 #pragma once
 
 using namespace std;
@@ -160,5 +160,42 @@ namespace ProyectoFinal {
 			this->label2->Text = "Insertado..!";
 		}
 	}
+
+
+	//-------Creacion de un nuevo nodo para el arbol ABB------------//
+	ABB crearNodo(int x)
+	{
+		ABB nuevoNodo = new(struct ABBnodo);
+		nuevoNodo->nro = x;
+		nuevoNodo->izq = nullptr;
+		nuevoNodo->der = nullptr;
+
+		return nuevoNodo;
+	}
+
+
+
+ABB desencola(struct cola &q)
+{
+	struct nodoCola *p;
+	p = q.delante;
+	ABB n = p->ptr;
+	q.delante = (q.delante)->sgte;
+	delete(p);
+	return n;
+}
+
+
+
+ABB unirABB(ABB izq, ABB der)
+{
+	if (izq == nullptr) return der;
+	if (der == nullptr) return izq;
+
+	ABB centro = unirABB(izq->der, der->izq);
+	izq->der = centro;
+	der->izq = izq;
+	return der;
+}
 		};
 }
