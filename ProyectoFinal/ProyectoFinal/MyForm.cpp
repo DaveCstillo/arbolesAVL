@@ -5,7 +5,7 @@ using namespace System::Windows::Forms;
 
 
 [STAThread]
-void Main(array<String^>^args)
+void Main()
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
@@ -18,11 +18,6 @@ void Main(array<String^>^args)
 	
 }
 
-inline System::Void ProyectoFinal::MyForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e) {
-
-	ABBscreen^ abbscreen = gcnew ABBscreen();
-	this->Hide();
-	abbscreen->ShowDialog();
 
 
-}
+

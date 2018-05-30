@@ -47,6 +47,8 @@ namespace ProyectoFinal {
 	private: System::Windows::Forms::Button^  button9;
 	private: System::Windows::Forms::Button^  button10;
 	private: System::Windows::Forms::GroupBox^  groupBox1;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::GroupBox^  groupBox2;
 	protected:
 
 	private:
@@ -73,7 +75,10 @@ namespace ProyectoFinal {
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->groupBox1->SuspendLayout();
+			this->groupBox2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -143,29 +148,29 @@ namespace ProyectoFinal {
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(260, 371);
+			this->button8->Location = System::Drawing::Point(6, 19);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(146, 32);
 			this->button8->TabIndex = 7;
-			this->button8->Text = L"INSERTAR ABB";
+			this->button8->Text = L"INSERTAR";
 			this->button8->UseVisualStyleBackColor = true;
 			// 
 			// button9
 			// 
-			this->button9->Location = System::Drawing::Point(260, 409);
+			this->button9->Location = System::Drawing::Point(6, 57);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(146, 32);
 			this->button9->TabIndex = 8;
-			this->button9->Text = L"INSERTAR ABB";
+			this->button9->Text = L"MOSTRAR";
 			this->button9->UseVisualStyleBackColor = true;
 			// 
 			// button10
 			// 
-			this->button10->Location = System::Drawing::Point(260, 447);
+			this->button10->Location = System::Drawing::Point(6, 95);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(146, 32);
 			this->button10->TabIndex = 9;
-			this->button10->Text = L"INSERTAR ABB";
+			this->button10->Text = L"ALGO MAS";
 			this->button10->UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
@@ -184,27 +189,61 @@ namespace ProyectoFinal {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"ABB";
 			// 
+			// panel1
+			// 
+			this->panel1->Location = System::Drawing::Point(226, 18);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(498, 445);
+			this->panel1->TabIndex = 11;
+			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->button10);
+			this->groupBox2->Controls->Add(this->button8);
+			this->groupBox2->Controls->Add(this->button9);
+			this->groupBox2->Location = System::Drawing::Point(12, 322);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(186, 155);
+			this->groupBox2->TabIndex = 12;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"AVL";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(472, 506);
+			this->ClientSize = System::Drawing::Size(736, 510);
+			this->Controls->Add(this->groupBox2);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->groupBox1);
-			this->Controls->Add(this->button10);
-			this->Controls->Add(this->button9);
-			this->Controls->Add(this->button8);
 			this->Name = L"MyForm";
 			this->Text = L"Inicio";
 			this->groupBox1->ResumeLayout(false);
+			this->groupBox2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		limpiarPanel();
+		ABBscreen^ abbscreen = gcnew ABBscreen();
+		abbscreen->TopLevel = false;
+		this->panel1->Controls->Add(abbscreen);
+		this->panel1->Tag = abbscreen;
+		abbscreen->Show();
+	
+	};
 
 
 	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
+
+	private: System::Void limpiarPanel() {
+
+		if (this->panel1->Controls->Count > 0) {
+			this->panel1->Controls->RemoveAt(0);
+				 }
+			 }
 };
 }

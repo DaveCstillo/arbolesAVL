@@ -36,22 +36,7 @@ void encola(struct cola &q, ABB n)
 	q.atras = p;
 }
 
-//------Metodo de insertar en el arbol ABB------------//
 
-void insertar(ABB &arbol, int x)
-{
-	system("cls");
-	if (arbol == NULL)
-	{
-		arbol = crearNodo(x);
-		cout << "\n\t  Insertado..!" << endl << endl;
-		system("cls");
-	}
-	else if (x < arbol->nro)
-		insertar(arbol->izq, x);
-	else if (x > arbol->nro)
-		insertar(arbol->der, x);
-}
 
 void preOrden(ABB arbol)
 {
@@ -490,7 +475,7 @@ int main()
 			system("cls");
 
 			cout << " Ingrese valor : ";  cin >> x;
-			insertar(arbol, x);
+			//insertar(arbol, x);
 			break;
 
 		case 2:

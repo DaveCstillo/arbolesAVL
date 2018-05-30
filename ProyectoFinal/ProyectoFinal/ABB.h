@@ -39,16 +39,16 @@ ABB crearNodo(int x)
 {
 	ABB nuevoNodo = new(struct ABBnodo);
 	nuevoNodo->nro = x;
-	nuevoNodo->izq = NULL;
-	nuevoNodo->der = NULL;
+	nuevoNodo->izq = nullptr;
+	nuevoNodo->der = nullptr;
 
 	return nuevoNodo;
 }
 
 ABB unirABB(ABB izq, ABB der)
 {
-	if (izq == NULL) return der;
-	if (der == NULL) return izq;
+	if (izq == nullptr) return der;
+	if (der == nullptr) return izq;
 
 	ABB centro = unirABB(izq->der, der->izq);
 	izq->der = centro;
