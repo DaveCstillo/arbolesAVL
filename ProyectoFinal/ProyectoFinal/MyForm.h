@@ -1,5 +1,15 @@
+//<<<<<<< HEAD
 #pragma once
 #include "ABBscreen.h"
+#define MARKER // declarations #endif 
+
+
+//=======
+//#pragma once 
+//#pragma comment(lib, "glut32.lib")
+//#pragma comment(lib, "glaux.lib")
+//#include "ABBtree.h"
+//>>>>>>> 71a903ed84cbb5ca0ec0f202c0452d4f8a8e2a7a
 
 namespace ProyectoFinal {
 
@@ -23,8 +33,8 @@ namespace ProyectoFinal {
 			//TODO: Add the constructor code here
 			//
 
-		}
-		ABB arbolabb = NULL;
+		};
+		ABB arbolabb = new(struct ABBnodo);
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.

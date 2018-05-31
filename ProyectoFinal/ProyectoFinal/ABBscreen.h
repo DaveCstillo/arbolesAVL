@@ -1,7 +1,13 @@
+//<<<<<<< HEAD
+#pragma once 
+#define MARKER // declarations #endif 
 #include <iostream>
-#include "ABB.h"
-#include "MyForm.h"
-#pragma once
+#include "librerias.h"
+//#pragma once
+//=======
+//#pragma comment(lib, "glut32.lib")
+//#pragma comment(lib, "glaux.lib")
+//>>>>>>> 71a903ed84cbb5ca0ec0f202c0452d4f8a8e2a7a
 
 using namespace std;
 
@@ -30,6 +36,7 @@ namespace ProyectoFinal {
 			
 		}
 		ABBscreen(ABB arbol) {
+			InitializeComponent();
 			this->arbol = arbol;
 		}
 
@@ -76,7 +83,7 @@ namespace ProyectoFinal {
 			this->label1->Location = System::Drawing::Point(13, 28);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(105, 22);
+			this->label1->Size = System::Drawing::Size(143, 25);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Insertar Dato:";
 			// 
@@ -93,9 +100,9 @@ namespace ProyectoFinal {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(125, 25);
+			this->textBox1->Location = System::Drawing::Point(236, 25);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(174, 27);
+			this->textBox1->Size = System::Drawing::Size(174, 30);
 			this->textBox1->TabIndex = 2;
 			// 
 			// label2
@@ -104,21 +111,21 @@ namespace ProyectoFinal {
 			this->label2->ForeColor = System::Drawing::SystemColors::InfoText;
 			this->label2->Location = System::Drawing::Point(231, 74);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(131, 22);
+			this->label2->Size = System::Drawing::Size(170, 25);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"texto informativo";
 			// 
 			// ABBscreen
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 22);
+			this->AutoScaleDimensions = System::Drawing::SizeF(13, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(374, 127);
+			this->ClientSize = System::Drawing::Size(470, 127);
 			this->ControlBox = false;
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
-			this->Font = (gcnew System::Drawing::Font(L"Minion Pro Med", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"ABBscreen";
