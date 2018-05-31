@@ -24,6 +24,9 @@
     <ClCompile Include="ABBscreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ABBdelete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -36,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ABBdelete.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AVL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

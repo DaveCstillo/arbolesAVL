@@ -1,5 +1,4 @@
 #pragma once
-#include "ABBtree.h"
 #include "ABBscreen.h"
 
 namespace ProyectoFinal {
@@ -23,8 +22,9 @@ namespace ProyectoFinal {
 			//
 			//TODO: Add the constructor code here
 			//
-		}
 
+		}
+		ABB arbolabb = NULL;
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -108,6 +108,7 @@ namespace ProyectoFinal {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"ELIMINAR";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button4
 			// 
@@ -145,6 +146,7 @@ namespace ProyectoFinal {
 			this->button7->TabIndex = 6;
 			this->button7->Text = L"BUSCAR ELEMENTO";
 			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 			// 
 			// button8
 			// 
@@ -184,7 +186,7 @@ namespace ProyectoFinal {
 			this->groupBox1->Controls->Add(this->button6);
 			this->groupBox1->Location = System::Drawing::Point(12, 12);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(186, 293);
+			this->groupBox1->Size = System::Drawing::Size(186, 325);
 			this->groupBox1->TabIndex = 10;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"ABB";
@@ -193,7 +195,7 @@ namespace ProyectoFinal {
 			// 
 			this->panel1->Location = System::Drawing::Point(226, 18);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(498, 445);
+			this->panel1->Size = System::Drawing::Size(498, 480);
 			this->panel1->TabIndex = 11;
 			// 
 			// groupBox2
@@ -201,7 +203,7 @@ namespace ProyectoFinal {
 			this->groupBox2->Controls->Add(this->button10);
 			this->groupBox2->Controls->Add(this->button8);
 			this->groupBox2->Controls->Add(this->button9);
-			this->groupBox2->Location = System::Drawing::Point(12, 322);
+			this->groupBox2->Location = System::Drawing::Point(12, 343);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Size = System::Drawing::Size(186, 155);
 			this->groupBox2->TabIndex = 12;
@@ -227,7 +229,7 @@ namespace ProyectoFinal {
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		limpiarPanel();
-		ABBscreen^ abbscreen = gcnew ABBscreen();
+		ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
 		abbscreen->TopLevel = false;
 		this->panel1->Controls->Add(abbscreen);
 		this->panel1->Tag = abbscreen;
@@ -245,5 +247,35 @@ namespace ProyectoFinal {
 			this->panel1->Controls->RemoveAt(0);
 				 }
 			 }
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+	limpiarPanel();
+	ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
+	abbscreen->TopLevel = false;
+	this->panel1->Controls->Add(abbscreen);
+	this->panel1->Tag = abbscreen;
+	abbscreen->Show();
+}
+private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
+	limpiarPanel();
+	ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
+	abbscreen->TopLevel = false;
+	this->panel1->Controls->Add(abbscreen);
+	this->panel1->Tag = abbscreen;
+	abbscreen->Show();
+}
 };
+
+
+//-------Creacion de un nuevo nodo para el arbol ABB------------//
+ABB crearNodo(int x)
+{
+	ABB nuevoNodo = new(struct ABBnodo);
+	nuevoNodo->nro = x;
+	nuevoNodo->izq = nullptr;
+	nuevoNodo->der = nullptr;
+
+	return nuevoNodo;
+}
+
+
 }

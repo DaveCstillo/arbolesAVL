@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ABB.h"
+#include "MyForm.h"
 #pragma once
 
 using namespace std;
@@ -19,12 +20,17 @@ namespace ProyectoFinal {
 	public ref class ABBscreen : public System::Windows::Forms::Form
 	{
 	public:
+		ABB arbol = NULL;
 		ABBscreen(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+			
+		}
+		ABBscreen(ABB arbol) {
+			this->arbol = arbol;
 		}
 
 	protected:
@@ -127,21 +133,26 @@ namespace ProyectoFinal {
 			
 		}
 
+			
+
+
 
 #pragma endregion
 
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-
+		
+		String^ num = textBox1->Text;
+		int x = System::Convert::ToInt32(num);
+		insertar(arbol, x);
 
 	}
 
-
+	
 
 	//------Metodo de insertar en el arbol ABB------------//
 
-	void insertar(ABB &arbol, int x)
+	void insertar(ABB arbol, int x)
 	{
 		
 		if (arbol == NULL)
@@ -198,4 +209,9 @@ ABB unirABB(ABB izq, ABB der)
 	return der;
 }
 		};
+
+
+	
+
 }
+

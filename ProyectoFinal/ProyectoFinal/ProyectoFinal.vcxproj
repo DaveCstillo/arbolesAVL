@@ -136,21 +136,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ABBdelete.cpp" />
     <ClCompile Include="ABBscreen.cpp" />
     <ClCompile Include="code.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABB.h" />
+    <ClInclude Include="ABBdelete.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ABBscreen.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ABBtree.h" />
+    <ClInclude Include="AVL.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ABBdelete.resx">
+      <DependentUpon>ABBdelete.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABBscreen.resx">
       <DependentUpon>ABBscreen.h</DependentUpon>
     </EmbeddedResource>
