@@ -83,7 +83,7 @@ namespace ProyectoFinal {
 			this->label1->Location = System::Drawing::Point(13, 28);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(143, 25);
+			this->label1->Size = System::Drawing::Size(121, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Insertar Dato:";
 			// 
@@ -102,8 +102,9 @@ namespace ProyectoFinal {
 			// 
 			this->textBox1->Location = System::Drawing::Point(236, 25);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(174, 30);
+			this->textBox1->Size = System::Drawing::Size(174, 26);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &ABBscreen::textBox1_TextChanged);
 			// 
 			// label2
 			// 
@@ -111,13 +112,12 @@ namespace ProyectoFinal {
 			this->label2->ForeColor = System::Drawing::SystemColors::InfoText;
 			this->label2->Location = System::Drawing::Point(231, 74);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(170, 25);
+			this->label2->Size = System::Drawing::Size(0, 20);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"texto informativo";
 			// 
 			// ABBscreen
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(13, 25);
+			this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(470, 127);
 			this->ControlBox = false;
@@ -148,12 +148,25 @@ namespace ProyectoFinal {
 
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		
-		String^ num = textBox1->Text;
-		int x = System::Convert::ToInt32(num);
-		insertar(arbol, x);
 
+		if (textBox1->Text == "") {
+			label2->ForeColor = System::Drawing::Color::Navy;
+			label2->Text = "Error! Ingrese un Dato Valido!";
+		}
+		else {
+			String^ num = textBox1->Text;
+			int x = System::Convert::ToInt32(num);
+			textBox1->Text = "";
+
+			insertar(arbol, x);
+		}
 	}
+
+			 
+		private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+
+			label2->Text = "";
+		}
 
 	
 
@@ -175,7 +188,7 @@ namespace ProyectoFinal {
 			insertar(arbol->der, x);
 		else {
 			this->label2->ForeColor = System::Drawing::Color::Firebrick;
-			this->label2->Text = "Insertado..!";
+			this->label2->Text = "Error..!";
 		}
 	}
 
@@ -215,7 +228,7 @@ ABB unirABB(ABB izq, ABB der)
 	der->izq = izq;
 	return der;
 }
-		};
+};
 
 
 	

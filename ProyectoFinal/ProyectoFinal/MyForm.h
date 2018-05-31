@@ -34,7 +34,7 @@ namespace ProyectoFinal {
 			//
 
 		};
-		ABB arbolabb = new(struct ABBnodo);
+		ABB arbolabb = NULL;
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
