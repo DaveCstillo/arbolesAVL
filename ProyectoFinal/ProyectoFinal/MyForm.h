@@ -1,4 +1,7 @@
-#pragma once
+#pragma once 
+#pragma comment(lib, "glut32.lib")
+#pragma comment(lib, "glaux.lib")
+#define MARKER // declarations #endif 
 #include "ABBtree.h"
 #include "ABBscreen.h"
 
