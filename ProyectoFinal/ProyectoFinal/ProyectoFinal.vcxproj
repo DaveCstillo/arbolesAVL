@@ -141,6 +141,7 @@
     <ClCompile Include="ABBscreen.cpp" />
     <ClCompile Include="code.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="vistaABB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABB.h" />
@@ -156,6 +157,9 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="vistaABB.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ABBdelete.resx">
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistaABB.resx">
+      <DependentUpon>vistaABB.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

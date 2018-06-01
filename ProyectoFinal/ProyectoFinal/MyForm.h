@@ -1,6 +1,6 @@
 //<<<<<<< HEAD
 #pragma once
-#include "ABBscreen.h"
+#include "librerias.h"
 #define MARKER // declarations #endif 
 
 
@@ -203,9 +203,10 @@ namespace ProyectoFinal {
 			// 
 			// panel1
 			// 
+			this->panel1->AutoScroll = true;
 			this->panel1->Location = System::Drawing::Point(226, 18);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(498, 480);
+			this->panel1->Size = System::Drawing::Size(733, 554);
 			this->panel1->TabIndex = 11;
 			// 
 			// groupBox2
@@ -224,7 +225,7 @@ namespace ProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(736, 510);
+			this->ClientSize = System::Drawing::Size(974, 584);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->groupBox1);
@@ -244,6 +245,11 @@ namespace ProyectoFinal {
 		this->panel1->Controls->Add(abbscreen);
 		this->panel1->Tag = abbscreen;
 		abbscreen->Show();
+		vistaABB^vistaArbol = gcnew vistaABB();
+		vistaArbol->TopLevel = false;
+		this->panel1->Controls->Add(vistaArbol);
+		this->panel1->Tag = vistaArbol;
+		vistaArbol->Show();
 	
 	};
 
