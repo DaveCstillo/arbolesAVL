@@ -18,13 +18,16 @@ namespace ProyectoFinal {
 	public ref class vistaABB : public System::Windows::Forms::Form
 	{
 	public:
-		ABB arbol = NULL;
+		Graphics^ graficador;
+		ABB arbol;
 		vistaABB(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+			arbol = NULL;
+			graficador = this->CreateGraphics();
 		}
 		vistaABB(ABB arbol) {
 			InitializeComponent();
@@ -40,7 +43,10 @@ namespace ProyectoFinal {
 			{
 				delete components;
 			}
+			delete graficador;
 		}
+
+	protected:
 
 	private:
 		/// <summary>
@@ -61,19 +67,42 @@ namespace ProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(370, 308);
+			this->AutoScroll = true;
+			this->ClientSize = System::Drawing::Size(384, 384);
 			this->ControlBox = false;
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
-			this->Location = System::Drawing::Point(228, 0);
 			this->Margin = System::Windows::Forms::Padding(5);
 			this->Name = L"vistaABB";
 			this->ShowIcon = false;
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &vistaABB::vistaABB_Paint);
 			this->ResumeLayout(false);
 
 		}
 
+	private: System::Void vistaABB_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		Point p1(20,30), p2(40,50);
+
+		/*if (arbol == NULL);
+		return;*/
+
+		graficador->DrawLine(Pens::Black, p1, p2);
+		drawNode(38, 48);
+
+	}
+
 #pragma endregion
 
+	void drawNode(int x, int y) {
+		Rectangle rectangle;
+		rectangle.X = x;
+		rectangle.Y = y;
+		rectangle.Width = 20;
+		rectangle.Height = 20;
+		//String^ texto = arbol->nro.ToString();
+		System::Drawing::Font^ drawFont = gcnew System::Drawing::Font("Microsoft Sans Serif", 12);
+		graficador->DrawString("4", drawFont, Brushes::Black, rectangle);
+		graficador->DrawEllipse(Pens::Red, rectangle);
+	}
 
 	void verArbol(ABB arbol, int n)
 		{

@@ -26,15 +26,18 @@ namespace ProyectoFinal {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
+		ABB arbolabb;
+		ABBscreen^ abbscreen;
+		vistaABB^ vistaArbol;
 		MyForm(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+			arbolabb = NULL;
 
 		};
-		ABB arbolabb = NULL;
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -109,6 +112,7 @@ namespace ProyectoFinal {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"MOSTRAR";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -239,46 +243,57 @@ namespace ProyectoFinal {
 #pragma endregion
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		//setABB();
 		limpiarPanel();
-		ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
-		abbscreen->TopLevel = false;
-		this->panel1->Controls->Add(abbscreen);
-		this->panel1->Tag = abbscreen;
-		abbscreen->Show();
-		vistaABB^vistaArbol = gcnew vistaABB();
-		vistaArbol->TopLevel = false;
-		this->panel1->Controls->Add(vistaArbol);
-		this->panel1->Tag = vistaArbol;
-		vistaArbol->Show();
-	
+		ingresaABB();	
 	};
 
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		//setABB();
+		limpiarPanel();
+		muestraVistaAbb();
+	}
+
+
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		limpiarPanel();
+		ingresaABB();
+	}
 
 	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-
+	private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
+		limpiarPanel();
+		ingresaABB();
+	}
 	private: System::Void limpiarPanel() {
-
 		if (this->panel1->Controls->Count > 0) {
 			this->panel1->Controls->RemoveAt(0);
 				 }
 			 }
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	limpiarPanel();
-	ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
-	abbscreen->TopLevel = false;
-	this->panel1->Controls->Add(abbscreen);
-	this->panel1->Tag = abbscreen;
-	abbscreen->Show();
-}
-private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-	limpiarPanel();
-	ABBscreen^ abbscreen = gcnew ABBscreen(arbolabb);
-	abbscreen->TopLevel = false;
-	this->panel1->Controls->Add(abbscreen);
-	this->panel1->Tag = abbscreen;
-	abbscreen->Show();
-}
+
+	void muestraVistaAbb() {
+		vistaArbol = gcnew vistaABB();
+		vistaArbol->TopLevel = false;
+		this->panel1->Controls->Add(vistaArbol);
+		this->panel1->Tag = vistaArbol;
+		vistaArbol->Show();
+	}
+	void ingresaABB() {
+		abbscreen = gcnew ABBscreen(arbolabb);
+		abbscreen->TopLevel = false;
+		this->panel1->Controls->Add(abbscreen);
+		this->panel1->Tag = abbscreen;
+		abbscreen->Show();
+	}
+
+	/*void setABB() {
+		if(abbscreen->getArbol()!=NULL)
+			this->arbolabb = abbscreen->getArbol();
+	}*/
+
+
+
 };
 
 

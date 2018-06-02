@@ -50,6 +50,7 @@ namespace ProyectoFinal {
 			{
 				delete components;
 			}
+			
 		}
 	public: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Button^  button1;
@@ -122,7 +123,7 @@ namespace ProyectoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(212, 162);
+			this->ClientSize = System::Drawing::Size(212, 144);
 			this->ControlBox = false;
 			this->Controls->Add(this->textbox1);
 			this->Controls->Add(this->label2);
@@ -138,12 +139,19 @@ namespace ProyectoFinal {
 
 		}
 
+
+	/*public: ABB getArbol() {
+		if (this->arbol == NULL)
+			return NULL;
+		else
+			return this->arbol;
+	}*/
+			
 	public: void setText(String^ txt) {
 			this->label1->Text = txt;
 			
 		}
 
-			
 
 
 
@@ -237,10 +245,12 @@ ABB unirABB(ABB izq, ABB der)
 	der->izq = izq;
 	return der;
 }
+
+
+
 };
 
 
-	
 
 }
 
