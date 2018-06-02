@@ -26,7 +26,7 @@ namespace ProyectoFinal {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		ABB arbolabb;
+		ABB* arbolabb;
 		ABBscreen^ abbscreen;
 		vistaABB^ vistaArbol;
 		MyForm(void)
@@ -35,7 +35,7 @@ namespace ProyectoFinal {
 			//
 			//TODO: Add the constructor code here
 			//
-			arbolabb = NULL;
+			arbolabb = new ABB();
 
 		};
 	protected:
@@ -243,13 +243,19 @@ namespace ProyectoFinal {
 #pragma endregion
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		//setABB();
-		limpiarPanel();
-		ingresaABB();	
+		if (*arbolabb == NULL) {
+			limpiarPanel();
+			ingresaABB();
+		}
+		else {
+			setABB();
+			limpiarPanel();
+			ingresaABB();
+		}
 	};
 
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		//setABB();
+		setABB();
 		limpiarPanel();
 		muestraVistaAbb();
 	}
@@ -273,7 +279,7 @@ namespace ProyectoFinal {
 			 }
 
 	void muestraVistaAbb() {
-		vistaArbol = gcnew vistaABB();
+		vistaArbol = gcnew vistaABB(*arbolabb);
 		vistaArbol->TopLevel = false;
 		this->panel1->Controls->Add(vistaArbol);
 		this->panel1->Tag = vistaArbol;
@@ -287,10 +293,10 @@ namespace ProyectoFinal {
 		abbscreen->Show();
 	}
 
-	/*void setABB() {
+	void setABB() {
 		if(abbscreen->getArbol()!=NULL)
 			this->arbolabb = abbscreen->getArbol();
-	}*/
+	}
 
 
 

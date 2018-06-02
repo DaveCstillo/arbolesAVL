@@ -80,28 +80,35 @@ namespace ProyectoFinal {
 		}
 
 	private: System::Void vistaABB_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		Point p1(20,30), p2(40,50);
+		Point p1(70,30), p2(45,50);
 
 		/*if (arbol == NULL);
 		return;*/
 
-		graficador->DrawLine(Pens::Black, p1, p2);
-		drawNode(38, 48);
+		drawSeparator(p1, p2);
+		//Para dibujar el Nodo: parametros: Numero, posicion X, posicion Y
+		drawNode(5,38, 48);
+
+		verArbol(arbol, 0);
 
 	}
 
 #pragma endregion
 
-	void drawNode(int x, int y) {
+	void drawNode(int nro, int x, int y) {
 		Rectangle rectangle;
 		rectangle.X = x;
 		rectangle.Y = y;
 		rectangle.Width = 20;
 		rectangle.Height = 20;
-		//String^ texto = arbol->nro.ToString();
+		String^ texto = nro.ToString();
 		System::Drawing::Font^ drawFont = gcnew System::Drawing::Font("Microsoft Sans Serif", 12);
-		graficador->DrawString("4", drawFont, Brushes::Black, rectangle);
+		graficador->DrawString(texto, drawFont, Brushes::Black, rectangle);
 		graficador->DrawEllipse(Pens::Red, rectangle);
+	}
+
+	void drawSeparator(Point inicio, Point fin) {
+		graficador->DrawLine(Pens::Black, inicio, fin);
 	}
 
 	void verArbol(ABB arbol, int n)
@@ -114,7 +121,7 @@ namespace ProyectoFinal {
 				//cout << "   ";
 		
 			numNodosABB++;
-			dibujarNodo(arbol->nro);
+			drawNode(arbol->nro, n, n+20);
 		
 			verArbol(arbol->izq, n + 1);
 		}

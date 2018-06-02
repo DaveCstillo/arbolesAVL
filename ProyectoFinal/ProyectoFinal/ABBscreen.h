@@ -26,7 +26,7 @@ namespace ProyectoFinal {
 	public ref class ABBscreen : public System::Windows::Forms::Form
 	{
 	public:
-		ABB arbol = NULL;
+		ABB* arbol;
 		ABBscreen(void)
 		{
 			InitializeComponent();
@@ -35,10 +35,14 @@ namespace ProyectoFinal {
 			//
 			
 		}
-		ABBscreen(ABB arbol) {
+		ABBscreen(ABB* arbol) {
 			InitializeComponent();
 			this->arbol = arbol;
 		}
+
+	ABB* getArbol() {
+		return arbol;
+	}
 
 	protected:
 		/// <summary>
@@ -50,7 +54,6 @@ namespace ProyectoFinal {
 			{
 				delete components;
 			}
-			
 		}
 	public: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Button^  button1;
@@ -139,19 +142,12 @@ namespace ProyectoFinal {
 
 		}
 
-
-	/*public: ABB getArbol() {
-		if (this->arbol == NULL)
-			return NULL;
-		else
-			return this->arbol;
-	}*/
-			
 	public: void setText(String^ txt) {
 			this->label1->Text = txt;
 			
 		}
 
+			
 
 
 
@@ -189,20 +185,24 @@ namespace ProyectoFinal {
 
 	//------Metodo de insertar en el arbol ABB------------//
 
-	void insertar(ABB arbol, int x)
+	void insertar(ABB* arbol, int x)
 	{
 		
-		if (arbol == NULL)
+		if (arbol == 0x00000000)
 		{
-			arbol = crearNodo(x);
+			*arbol = crearNodo(x);
 			this->label2->ForeColor = System::Drawing::Color::ForestGreen;
 			this->label2->Text = "Insertado..!";
 			
 		}
-		else if (x < arbol->nro)
+		/*else if (x < arbol->nro)
 			insertar(arbol->izq, x);
 		else if (x > arbol->nro)
-			insertar(arbol->der, x);
+			insertar(arbol->der, x);*/
+		else if (x < (*arbol)->nro)
+			insertar(&(*arbol)->izq, x);
+		else if (x >(*arbol)->nro)
+			insertar(&(*arbol)->der, x);
 		else {
 			this->label2->ForeColor = System::Drawing::Color::Firebrick;
 			this->label2->Text = "Error..!";
